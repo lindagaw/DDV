@@ -8,8 +8,11 @@ from .adda_funcs import eval_src_encoder, eval_tgt_encoder, train_src_encoder, t
 from .deep_coral_funcs import CORAL, train_coral, eval_coral
 from .gradient_reversal_funcs import train_gradientReversal, eval_gradientReversal
 
+from .hook_activations import get_activation
+
 __all__ = (eval_src, train_src, train_tgt, eval_tgt, train_detector, eval_detector, \
             train_baseline, eval_baseline, \
             train_coral, eval_coral, CORAL, \
             eval_src_encoder, eval_tgt_encoder, train_src_encoder, train_tgt_encoder, \
-            train_gradientReversal, eval_gradientReversal)
+            train_gradientReversal, eval_gradientReversal, \
+            get_activation)
