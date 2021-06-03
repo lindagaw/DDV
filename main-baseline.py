@@ -11,12 +11,6 @@ from core import eval_src, eval_tgt, train_src, train_tgt, train_baseline, eval_
 from models import Discriminator, LeNetClassifier, LeNetEncoder, Baseline
 from utils import get_data_loader, init_model, init_random_seed
 
-activation = {}
-def get_activation(name):
-    def hook(model, input, output):
-        activation[name] = output.detach()
-    return hook
-
 if __name__ == '__main__':
     # init random seed
     init_random_seed(params.manual_seed)
@@ -54,9 +48,6 @@ if __name__ == '__main__':
     # eval target model on target data
     print("=== Evaluating target baseline for target domain ===")
     eval_baseline(tgt_baseline, tgt_data_loader_eval)
-
-    tgt_baseline.register_forward_hook(get_activation('block1'))
-    print(activation['block1'].shape)
 
     print('=====================================================')
     print('==================== TL/DA Magic ====================')

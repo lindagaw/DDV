@@ -71,6 +71,7 @@ def train_baseline(baseline, data_loader):
 
 
 def eval_baseline(baseline, data_loader):
+
     """Evaluate baseline for source domain."""
     # set eval state for Dropout and BN layers
     baseline.eval()
@@ -88,6 +89,8 @@ def eval_baseline(baseline, data_loader):
         labels = make_variable(labels).squeeze_()
 
         preds = baseline(images)
+        print(preds.shape)
+
         loss += criterion(preds, labels).data
         pred_cls = preds.data.max(1)[1]
 
