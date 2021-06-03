@@ -30,14 +30,8 @@ if __name__ == '__main__':
     tgt_baseline = init_model(net=Baseline(),
                                 restore='snapshots//tgt-baseline-final.pt')
 
-    model = init_model(net=Baseline(),
+    sliced_src_baseline = init_model(net=Baseline(),
                                 restore='snapshots//tgt-baseline-final.pt')
-
-
-    model.baselineEncoder = nn.Sequential(*[tgt_baseline.baselineEncoder[i] for i in range(6)])
-
-    print(model)
-
 
 
 
@@ -47,6 +41,10 @@ if __name__ == '__main__':
     print(src_baseline)
 
     src_baseline = train_baseline(src_baseline, src_data_loader)
+
+    sliced_src_baseline.baselineEncoder = nn.Sequential(*[tgt_baseline.baselineEncoder[i] for i in range(3)])
+
+
 
     # train target baseline
     print("=== Training baseline for target domain ===")
@@ -58,6 +56,8 @@ if __name__ == '__main__':
     # eval source model on source data
     print("=== Evaluating source baseline for source domain ===")
     eval_baseline(src_baseline, src_data_loader_eval)
+
+    eval_baseline(sliced_src_baseline, src_data_loader_eval)
 
     # eval target model on target data
     print("=== Evaluating target baseline for target domain ===")
