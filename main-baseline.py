@@ -55,7 +55,7 @@ if __name__ == '__main__':
     print("=== Evaluating target baseline for target domain ===")
     eval_baseline(tgt_baseline, tgt_data_loader_eval)
 
-    model.register_forward_hook(get_activation('block1'))
+    tgt_baseline.register_forward_hook(get_activation('block1'))
     print(activation['block1'].shape)
 
     print('=====================================================')
