@@ -34,7 +34,7 @@ if __name__ == '__main__':
                                 restore='snapshots//tgt-baseline-final.pt')
 
 
-    model.baselineEncoder = nn.Sequential(*[tgt.baselineEncoder[i] for i in range(6)])
+    model.baselineEncoder = nn.Sequential(*[tgt_baseline.baselineEncoder[i] for i in range(6)])
 
     print(model)
 
