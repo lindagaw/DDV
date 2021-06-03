@@ -27,6 +27,18 @@ if __name__ == '__main__':
 
     tgt_baseline = init_model(net=Baseline(),
                                 restore='snapshots//tgt-baseline-final.pt')
+
+    model = init_model(net=Baseline(),
+                                restore='snapshots//tgt-baseline-final.pt')
+
+
+    model.baselineEncoder = nn.Sequential(*[tgt.baselineEncoder[i] for i in range(6)])
+
+    print(model)
+
+
+
+
     # train source baseline
     print("=== Training baseline for source domain ===")
     print(">>> Source Baseline <<<")
